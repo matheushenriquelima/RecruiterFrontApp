@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecruiterFrontApp.CadastrarPage"
+             Title="CadastrarPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Digite o nome da candidato"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry x:Name="entNome" />
+        <Label 
+            Text="Digite o contato da candidato"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry x:Name="entContato" />
+        <Label 
+            Text="Digite a data de contração"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <DatePicker 
+            x:Name="entDataContratacao"
+            MinimumDate="01/01/2023"
+            MaximumDate="12/31/2023"
+            />
+        <Label 
+            Text="Digite as habilidades"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry x:Name="entHabilidades" />
+        <Label 
+            Text="Está Aprovado?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <CheckBox  x:Name="entStatus"/>
+        <Button
+                x:Name="SubmitBtn"
+                Text="Salvar"
+                Clicked="SubmitClicked"
+                HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>
