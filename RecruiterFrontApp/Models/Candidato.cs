@@ -8,18 +8,8 @@ namespace RecruiterFrontApp.Models
         public string Contact { get; set; }
         public string Skills { get; set; }
        
-        public bool IsHired;
+        public bool IsHired { get; set; }
         public DateTime? HiringDate { get; set; }
-
-
-        public string getIsHired()
-        {
-            return this.IsHired ? "Contratado" : "Reprovado";
-        }
-
-        public void setMyProperty(bool value)
-        {
-            this.IsHired = value;
-        }
+    
     }
 }

@@ -21,7 +21,7 @@ public partial class CadastrarPage : ContentPage
                 name = entNome.Text,
                 skills = entHabilidades.Text,
                 contact = entContato.Text,
-                hiringDate = entDataContratacao.Date,
+                hiringDate = entDataContratacao.Date.ToUniversalTime(),
                 isHired = entStatus.IsChecked,
             };
             Debug.WriteLine(data);
@@ -38,5 +38,10 @@ public partial class CadastrarPage : ContentPage
             await DisplayAlert("Erro", ex.Message, "OK");
         }
 
+    }
+
+    private async void CancelClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MainPage());
     }
 }

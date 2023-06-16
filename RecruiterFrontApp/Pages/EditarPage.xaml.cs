@@ -1,12 +1,12 @@
 using RecruiterFrontApp.Models;
 using Newtonsoft.Json;
 using System.Text;
+using System.Diagnostics;
 
 namespace RecruiterFrontApp;
 
 public partial class EditarPage : ContentPage
 {
-    Candidato candidatoEdit;
     private readonly string uri = "https://localhost:7008/api/Candidates";
     private readonly string OK = "OK";
     private HttpClient client = new HttpClient();
@@ -22,9 +22,10 @@ public partial class EditarPage : ContentPage
     {
         using var response = await client.GetAsync(uri + '/' + candidatoId);
         var json = await response.Content.ReadAsStringAsync();
-        List<Candidato> objs = JsonConvert.DeserializeObject<List<Candidato>>(json);
-        candidatoEdit = objs.FirstOrDefault((a => a.Id == candidatoId));
+        Candidato candidatoEdit = JsonConvert.DeserializeObject<Candidato>(json);
         entNome.Text = candidatoEdit.Name;
+        entHabilidades.Text = candidatoEdit.Skills;
+        entContato.Text = candidatoEdit.Contact;
     }
     public async void EditarClicked(object sender, EventArgs args)
 	{
@@ -35,7 +36,7 @@ public partial class EditarPage : ContentPage
                 name = entNome.Text,
                 skills = entHabilidades.Text,
                 contact = entContato.Text,
-                hiringDate = entDataContratacao.Date,
+                hiringDate = entDataContratacao.Date.ToUniversalTime(),
                 isHired = entStatus.IsChecked,
         };
         var json = JsonConvert.SerializeObject(data);
@@ -46,7 +47,6 @@ public partial class EditarPage : ContentPage
 
             if (response.IsSuccessStatusCode){
                 await DisplayAlert("Sucesso", "Edição Concluida", OK);
-                entNome.Text = "";
                 await Navigation.PushAsync(new MainPage());
             }
             else {
@@ -55,7 +55,12 @@ public partial class EditarPage : ContentPage
         }
         catch (Exception e)
         {
-            await DisplayAlert("Error",$"Ocorreu um erro ao fazer a solicitação: {e.Message}", "VOLTAR"));
+            await DisplayAlert("Error",$"Ocorreu um erro ao fazer a solicitação: {e.Message}", "VOLTAR");
         }
+    }
+
+    private async void CancelClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MainPage());
     }
 }

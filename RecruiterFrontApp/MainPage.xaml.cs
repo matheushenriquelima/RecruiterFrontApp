@@ -25,6 +25,7 @@ public partial class MainPage : ContentPage
         using var response = await client.GetAsync(uri);
         var json = await response.Content.ReadAsStringAsync();
         List<Candidato> candidatosResponse = JsonConvert.DeserializeObject<List<Candidato>>(json);
+        candidatos.Clear();
         candidatosResponse.ForEach(x => candidatos.Add(x));
     }
 
@@ -51,7 +52,7 @@ public partial class MainPage : ContentPage
     }
     private async void Editar(object sender, EventArgs e)
     {
-        Button button = (Button)sender;
+        Button button = (Button) sender;
 
         var candidato = button.CommandParameter as Candidato;
         await Navigation.PushAsync(new EditarPage(candidato.Id));

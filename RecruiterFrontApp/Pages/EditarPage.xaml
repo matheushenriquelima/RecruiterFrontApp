@@ -34,9 +34,16 @@
             HorizontalOptions="Center" />
         <CheckBox  x:Name="entStatus"/>
         <Button
+                x:Name="CancelBtn"
+                Text="Cancelar"
+                Clicked="CancelClicked"
+                BackgroundColor="DarkRed"
+                HorizontalOptions="Start" />
+        <Button
                 x:Name="SubmitBtn"
                 Text="Salvar"
-                Clicked="SubmitClicked"
-                HorizontalOptions="Center" />
+                Clicked="EditarClicked"
+                BackgroundColor="DarkBlue"
+                HorizontalOptions="End" />
     </VerticalStackLayout>
 </ContentPage>

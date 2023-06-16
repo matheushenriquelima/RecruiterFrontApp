@@ -11,13 +11,13 @@
                 Text="Cadastrar candidato"
                 
                 Clicked="NewClicked"
-                HorizontalOptions="End" />
+               HorizontalOptions="EndAndExpand" />
 
             <ListView x:Name="list" >
                 <ListView.ItemTemplate >
                     <DataTemplate >
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Start">
+                            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Start" Margin="10">
                                 <Label Text="Nome: " Padding="5"/>
                                 <Label Text="{Binding Name}" Padding="5"/>
                                 <Label Text="Contato: " Padding="5"/>
@@ -28,6 +28,8 @@
                                 <Label Text="{Binding HiringDate}" Padding="5"/>
                                 <Label Text="Status: " Padding="5"/>
                                 <Label Text="{Binding IsHired}" Padding="5"/>
+                                <Button x:Name="EditarBtn" Text="Editar" CommandParameter="{Binding .}" Clicked="Editar" FontSize="16" TextColor="White" BackgroundColor="DarkBlue" HorizontalOptions="End" />
+                                <Button x:Name="excluirBtn" Text="Excluir" CommandParameter="{Binding .}" Clicked="Remover" FontSize="16" TextColor="White" BackgroundColor="DarkRed" HorizontalOptions="End"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
